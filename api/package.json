@@ -4,7 +4,7 @@
   "description": "",
   "main": "qualquer.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -12,5 +12,8 @@
   "dependencies": {
     "axios": "^0.27.2",
     "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "jest": "^28.1.3"
   }
 }
