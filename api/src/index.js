@@ -1,5 +1,4 @@
 const express = require('express')
-const requestApi = require('./pokeapi-client')
 const router = require('./routes')
 const errorHandler = require('./errorHandler')
 

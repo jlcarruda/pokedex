@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const PokeApiClient = require('../pokeapi-client');
+const PokeApiClient = require('../services/pokeapi-client');
 const pokemonRouter = Router();
 
 
@@ -9,7 +9,8 @@ pokemonRouter.get('/pokemon/:name', async (request, response, next) => {
   const pokemonName = request.params.name
 
   try {
-    const data = await PokeApiClient.getPokemonAbilities(pokemonName)
+    const client = new PokeApiClient()
+    const data = await client.getPokemonAbilities(pokemonName)
 
     response.status(200).json(
       {
