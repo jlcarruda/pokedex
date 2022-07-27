@@ -5,6 +5,8 @@ const errorHandler = require('./errorHandler')
 const app = express()
 const version = 'v1'
 
+const PORT = process.env.PORT || '8080'
+
 app.use(`/api/${version}`, router)
 
 app.all('*', (req, res) => {
@@ -14,7 +16,7 @@ app.all('*', (req, res) => {
 app.use(errorHandler)
 
 module.exports = () => {
-  app.listen('8080', () => {
-    console.log(`Server running @ port 80`)
+  app.listen(PORT, () => {
+    console.log(`Server running @ port ${PORT}`)
   })
 }
