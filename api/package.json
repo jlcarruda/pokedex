@@ -1,11 +1,12 @@
 {
-  "name": "teste-zrp",
+  "name": "pokedex-api",
   "version": "1.0.0",
   "description": "",
-  "main": "qualquer.js",
+  "main": "index.js",
   "scripts": {
     "test": "jest",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
