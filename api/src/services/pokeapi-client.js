@@ -24,11 +24,6 @@ class PokeAPIClient {
     const response = await this.getPokemon(name);
     return response.abilities.map(i => i.ability.name).sort()
   }
-
-  async getPokemonAbilities(name) {
-    const { data } = await this.getPokemon(name);
-    
-  }
 }
 
 module.exports = PokeAPIClient
