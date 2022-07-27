@@ -17,10 +17,7 @@ pokemonRouter.get('/pokemon/:name', async (request, response, next) => {
       }
     )
   } catch (error) {
-    console.error(error)
-    response.status(500).json({
-      error
-    })
+    next(error)
   }
 })
 
