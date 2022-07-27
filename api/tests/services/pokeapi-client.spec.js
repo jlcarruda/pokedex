@@ -24,16 +24,16 @@ describe('Poke API Client Unit Testing', () => {
       })
     })
 
-    describe('.getPokemonAbilities function', () => {
+    describe('.getPokemonAbilitiesNames function', () => {
       it('should return successfully the abilities of the fetched pokemon', async () => {
         clientMock.get.mockResolvedValue(getPokemonSuccessMock)
         const client = new PokeApiClient(clientMock)
-        const response = await client.getPokemonAbilities('pikachu')
+        const response = await client.getPokemonAbilitiesNames('pikachu')
 
         expect(response).toBeDefined()
         expect(Array.isArray(response)).toBeTruthy();
         expect(response.length).toBe(2)
-        expect(response.sort()).toStrictEqual(["limber", "imposter"].sort())
+        expect(response).toStrictEqual(["limber", "imposter"].sort())
         expect(clientMock.get).toBeCalled()
       })
     })
@@ -56,13 +56,13 @@ describe('Poke API Client Unit Testing', () => {
       })
     })
 
-    describe('.getPokemonAbilities function', () => {
+    describe('.getPokemonAbilitiesNames function', () => {
       it('should throw error if service rejects with 404', async () => {
         clientMock.get.mockRejectedValue(getPokemonErrorMock)
         const client = new PokeApiClient(clientMock)
         let errorCatched;
         try {
-          await client.getPokemonAbilities('pikachu')
+          await client.getPokemonAbilitiesNames('pikachu')
         } catch (err) {
           errorCatched = err
         }

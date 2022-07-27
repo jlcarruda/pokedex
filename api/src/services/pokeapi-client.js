@@ -20,9 +20,9 @@ class PokeAPIClient {
     return data
   }
 
-  async getPokemonAbilities(name) {
+  async getPokemonAbilitiesNames(name) {
     const response = await this.getPokemon(name);
-    return response.abilities.map(i => i.ability.name)
+    return response.abilities.map(i => i.ability.name).sort()
   }
 }
 
