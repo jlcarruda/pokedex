@@ -4,14 +4,13 @@ import '../styles/search.css'
 import PokemonCard from './PokemonCard'
 import useHttpRequest from '../hooks/useHttpRequest'
 
-// const URL = 'https://pokeapi.co/api/v2/pokemon/'
 const URL = 'http://localhost:8080/api/v1/pokemon/'
 
 export default function PokemonSearch() {
   const [query, setQuery] = useState('')
   const [name, setName] = useState('')
 
-  const { error, data, loading } = useHttpRequest(`${URL}${name}`)
+  const { data, loading } = useHttpRequest(`${URL}${name}`)
 
   const handleChange = (event) => {
     event.preventDefault()
