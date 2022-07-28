@@ -1,0 +1,20 @@
+.searchWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchWrapper input {
+  border-radius: 25px;
+  padding: 5px 20px;
+}
+
+.searchWrapper:focus-within {
+  box-shadow: 0px 0px 8px #88888838;
+  outline-color: rgb(143, 143, 240);
+}
+
+.submitButton {
+  display: flexbox;
+  margin-left: 10px;
+}
