@@ -19,7 +19,7 @@ describe('StatsMapper Helper Unit Testing', () => {
   it('should map correctly the stats from a pokemon', () => {
     const formatted = statsMapper(statsMock)
 
-    expect(Object.keys(formatted).sort()).toStrictEqual(['stat_1', 'stat_2'].sort())
-    expect(Object.values(formatted).sort()).toStrictEqual([1, 2].sort())
+    expect(formatted.map(i => i.name).sort()).toStrictEqual(['stat_1', 'stat_2'].sort())
+    expect(formatted.map(i => i.value).sort()).toStrictEqual([1, 2].sort())
   })
 })

@@ -1,7 +1,7 @@
 const statsMapper = (stats) => stats
-  .reduce((prev, { base_stat, stat }) => ({
+  .reduce((prev, { base_stat, stat }) => ([
     ...prev,
-    [stat.name]: base_stat
-  }), {})
+    { name: stat.name, value: base_stat }
+  ]), [])
 
 module.exports = statsMapper
