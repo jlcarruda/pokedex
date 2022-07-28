@@ -1,52 +1,46 @@
-import React, { useEffect, useState } from 'react'
-import { Button, Col, Container, Form, Row } from 'react-bootstrap'
-import { getPokemonDetails } from '../services/pokemonApi'
+import React, { useState } from 'react'
+import '../styles/search.css'
+
+import PokemonCard from './PokemonCard'
+import useHttpRequest from '../hooks/useHttpRequest'
+
+// const URL = 'https://pokeapi.co/api/v2/pokemon/'
+const URL = 'http://localhost:8080/api/v1/pokemon/'
 
 export default function PokemonSearch() {
-  const [detail, setDetail] = useState(null)
   const [query, setQuery] = useState('')
-  const [submit, setSubmit] = useState(false)
+  const [name, setName] = useState('')
+
+  const { error, data, loading } = useHttpRequest(`${URL}${name}`)
 
   const handleChange = (event) => {
+    event.preventDefault()
     setQuery(event.target.value)
   }
 
-  const handleSubmit = (event) => {
-    setSubmit(true)
-  }
-
-  useEffect(() => {
-    let mounted = true;
-    if (mounted && submit) {
-      getPokemonDetails(query)
-        .then(pokemonDetail => {
-          if (mounted) {
-            setDetail(pokemonDetail)
-          }
-        })
-    }
-
-    return () => {
-      mounted = false
-      setSubmit(false)
-    }
-  }, [query, submit])
-
+  if (loading) return "Loading..."
   return (
-    <Container>
-      <Row>
-        <Col>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group controlId='PokemonSearch'>
-              <Form.Control type="text" placeholder='Qual Pokemon você deseja procurar?' onChange={handleChange} value={query} />
-            </Form.Group>
-            <Button variant="primary" type="submit">Procurar</Button>
-          </Form>
-        </Col>
-      </Row>
-      <Row>
-        <Col></Col>
-      </Row>
-    </Container>
+    <div>
+      {/* {error && <div>{`Error: ${error.message}`}</div>} */}
+      <div className="searchWrapper">
+        <form>
+          <input
+            type="search"
+            id="search"
+            placeholder='Procure um Pokémon...'
+            onChange={handleChange}
+            value={query}
+          />
+          <button
+            type="button"
+            className='submitButton btn btn-primary btn-sm'
+            onClick={(e) => query && setName(query.toLowerCase()) && setQuery('')}
+          >
+            Procurar
+          </button>
+        </form>
+      </div>
+      {data && <PokemonCard detail={data} />}
+    </div>
   )
 }

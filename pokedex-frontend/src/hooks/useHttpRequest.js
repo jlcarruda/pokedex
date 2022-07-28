@@ -8,12 +8,17 @@ export default function useHttpRequest(url = "", options = null) {
   useEffect(() => {
     let isMounted = true;
     setLoading(true)
-
+    console.log(url, options)
     fetch(url, options)
-      .then(res => res.json())
+      .then(res => {
+        console.log(res)
+        
+        return res.json()
+      })
       .then(data => {
+        console.log(data)
         if (isMounted) {
-          setData(data)
+          setData(data.data)
           setError(null)
         }
       })
